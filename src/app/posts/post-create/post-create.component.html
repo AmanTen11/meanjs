@@ -1,0 +1,29 @@
+<!-- <h2>Post Create Component</h2> -->
+<!-- <textarea rows="6" [(ngModel)]="enteredText"></textarea> -->
+<!--
+  ----Two way data binding-----
+  <mat-card>
+  <mat-form-field>
+    <input matInput type="input" [(ngModel)]="enteredTitle">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput rows="6" [(ngModel)]="enteredContent"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onSavePost()">Create Post</button>
+</mat-card> -->
+
+<mat-card>
+  <form (submit)="onSavePost(postForm)" #postForm="ngForm">
+    <mat-form-field>
+      <input matInput type="input" name="title" ngModel required minlength="3" #title="ngModel" placeholder="Post Title"/>
+      <mat-error *ngIf="title.invalid">Enter post Title</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput rows="6" name="content" ngModel required #content="ngModel" placeholder="Post Content"></textarea>
+      <mat-error *ngIf="content.invalid">Enter Post Content</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">
+      Create Post
+    </button>
+  </form>
+</mat-card>
